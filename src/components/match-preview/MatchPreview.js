@@ -28,6 +28,7 @@ export class MatchPreview extends React.PureComponent {
       borderTopLeftRadius: 10,
       borderBottomLeftRadius: 10,
       width: '25%',
+      justifyContent: 'space-between',
     },
     cardRight: {
       alignItems: 'stretch',
@@ -50,12 +51,10 @@ export class MatchPreview extends React.PureComponent {
     },
     timing: {
       alignItems: 'center',
-      marginTop: 28,
       paddingLeft: 5,
       paddingRight: 5,
     },
     region: {
-      marginTop: 15,
       fontSize: 18,
     },
     day: {
@@ -67,7 +66,7 @@ export class MatchPreview extends React.PureComponent {
       textAlign: 'center',
     },
     relativeTime: {
-      fontStyle: 'italic',
+      // fontStyle: 'italic',
       textAlign: 'center',
     },
     titleWrapper: {
@@ -169,6 +168,8 @@ export class MatchPreview extends React.PureComponent {
               time={this.props.match.opens}
               format="HH:mm z"
             />
+          </View>
+          <View>
             <TimeToNow
               time={this.props.match.opens}
               style={[
