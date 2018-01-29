@@ -1,0 +1,79 @@
+{
+  "private": true,
+  "main": "./src/index.js",
+  "scripts": {
+    "precommit": "lint-staged",
+    "prettier": "prettier --write \"**/*.js\"",
+    "prettier-watch": "onchange '**/*.js' -- prettier --write {{changed}}",
+    "start": "react-native-scripts start",
+    "eject": "react-native-scripts eject",
+    "android": "react-native-scripts android",
+    "ios": "react-native-scripts ios",
+    "test":
+      "node node_modules/jest/bin/jest.js --coverage --testMatch=\"**/__tests__/**/*.test.js?(x)\""
+  },
+  "lint-staged": {
+    "*.{js,json,css}": ["prettier --write", "git add"]
+  },
+  "jest": {
+    "preset": "jest-expo",
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 100
+      }
+    },
+    "coverageReporters": ["text", "html"],
+    "setupFiles": ["./src/__tests__/setupTests.js"],
+    "setupTestFrameworkScriptFile": "./src/__tests__/setupTestFramework.js",
+    "snapshotSerializers": ["enzyme-to-json/serializer"]
+  },
+  "dependencies": {
+    "@expo/vector-icons": "^6.2.2",
+    "expo": "^24.0.0",
+    "history": "^4.7.2",
+    "isomorphic-fetch": "^2.2.1",
+    "moment-timezone": "^0.5.14",
+    "prop-types": "^15.6.0",
+    "ramda": "^0.25.0",
+    "react": "16.0.0",
+    "react-native":
+      "https://github.com/expo/react-native/archive/sdk-24.0.0.tar.gz",
+    "react-native-drawer": "^2.5.0",
+    "react-native-elements": "^0.19.0",
+    "react-redux": "^5.0.6",
+    "react-router-native": "^4.2.0",
+    "react-router-redux": "next",
+    "redux": "^3.7.2",
+    "redux-actions": "^2.2.1",
+    "redux-devtools-extension": "^2.13.2",
+    "redux-saga": "^0.16.0",
+    "reselect": "^3.0.1"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.1.2",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-to-json": "^3.3.0",
+    "eslint": "^4.14.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-config-react-app": "^2.0.1",
+    "eslint-plugin-flowtype": "^2.40.1",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-prettier": "^2.4.0",
+    "eslint-plugin-react": "^7.5.1",
+    "husky": "^0.14.3",
+    "jest-enzyme": "^4.0.2",
+    "jest-expo": "^24.0.0",
+    "jest-fetch-mock": "^1.4.0",
+    "lint-staged": "^6.0.0",
+    "onchange": "^3.3.0",
+    "prettier": "^1.9.2",
+    "react-dom": "^16.2.0",
+    "react-native-scripts": "^1.8.1",
+    "react-test-renderer": "^16.2.0"
+  }
+}
