@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`drawer reducer should set isOpen 1`] = `
+Object {
+  "isOpen": true,
+}
+`;

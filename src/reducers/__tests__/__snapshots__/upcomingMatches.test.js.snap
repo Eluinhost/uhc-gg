@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`upcomingMatches reducer UPDATE_UPCOMING_MATCHES.COMPLETED failure 1`] = `
+Object {
+  "error": [Error: test],
+  "isFetching": false,
+  "matches": Array [
+    1,
+    2,
+    3,
+  ],
+}
+`;
+
+exports[`upcomingMatches reducer UPDATE_UPCOMING_MATCHES.COMPLETED success 1`] = `
+Object {
+  "error": null,
+  "isFetching": false,
+  "matches": Array [
+    3,
+    4,
+    5,
+  ],
+}
+`;
+
+exports[`upcomingMatches reducer UPDATE_UPCOMING_MATCHES.STARTED 1`] = `
+Object {
+  "error": null,
+  "isFetching": true,
+  "matches": Array [
+    1,
+    2,
+    3,
+  ],
+}
+`;
