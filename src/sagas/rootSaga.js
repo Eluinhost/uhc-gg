@@ -4,6 +4,6 @@ import { updateUpcomingMatches } from './updateUpcomingMatches';
 
 const sagas = [updateUpcomingMatches];
 
-export function* rootSagas() {
+export function* rootSaga() {
   yield all(map(fork, sagas));
 }

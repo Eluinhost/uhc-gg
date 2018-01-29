@@ -3,7 +3,7 @@ import { UPDATE_UPCOMING_MATCHES } from '../actions';
 import { getUpcomingMatches } from '../api';
 
 export function* updateUpcomingMatches() {
-  yield UPDATE_UPCOMING_MATCHES.STARTED();
+  yield put(UPDATE_UPCOMING_MATCHES.STARTED());
 
   try {
     const matches = yield call(getUpcomingMatches);

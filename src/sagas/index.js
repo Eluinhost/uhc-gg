@@ -1,1 +1,1 @@
-export { rootSagas as sagas } from './rootSaga';
+export { rootSaga as sagas } from './rootSaga';
