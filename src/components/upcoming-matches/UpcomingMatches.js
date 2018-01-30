@@ -9,7 +9,7 @@ class Row extends React.PureComponent {
   };
 
   static styles = StyleSheet.create({
-    wrapper: { paddingLeft: 10, paddingTop: 10, paddingRight: 10 },
+    wrapper: { paddingTop: 10, paddingBottom: 10 },
   });
 
   render() {

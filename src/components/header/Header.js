@@ -1,4 +1,3 @@
-import { LIGHT_HIGHLIGHT } from '../../Colours';
 import * as React from 'react';
 import { Header as HeaderLib, Icon } from 'react-native-elements';
 import { AppText } from '../app-text';
@@ -19,6 +18,7 @@ export class Header extends React.PureComponent {
     container: {
       borderBottomWidth: 0,
       paddingBottom: 0,
+      elevation: 2,
     },
     iconWrapper: {
       padding: 7,
@@ -28,7 +28,7 @@ export class Header extends React.PureComponent {
   render() {
     return (
       <HeaderLib
-        backgroundColor={LIGHT_HIGHLIGHT}
+        backgroundColor="#263238"
         outerContainerStyles={Header.styles.container}
       >
         <TouchableHighlight
@@ -36,13 +36,13 @@ export class Header extends React.PureComponent {
           underlayColor="#FFFFFF33"
         >
           <View style={Header.styles.iconWrapper}>
-            <Icon name="menu" color="white" size={30} />
+            <Icon name="menu" color="#ECEFF1" size={30} />
           </View>
         </TouchableHighlight>
         <AppText style={Header.styles.text}>Upcoming Matches</AppText>
         <TouchableHighlight underlayColor="#FFFFFF33">
           <View style={Header.styles.iconWrapper}>
-            <Icon name="settings" color="white" size={30} />
+            <Icon name="settings" color="#ECEFF1" size={30} />
           </View>
         </TouchableHighlight>
       </HeaderLib>

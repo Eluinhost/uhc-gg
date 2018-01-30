@@ -5,6 +5,7 @@ export class AppText extends React.PureComponent {
   static styles = StyleSheet.create({
     text: {
       fontFamily: 'ShareTech-Regular',
+      color: '#ECEFF1',
     },
     bold: {
       fontWeight: 'bold',

@@ -21,21 +21,22 @@ export class MatchPreview extends React.PureComponent {
     card: {
       flexDirection: 'row',
       alignItems: 'stretch',
+      elevation: 1,
+      backgroundColor: '#37474F',
     },
     cardLeft: {
       padding: 10,
       alignItems: 'center',
-      borderTopLeftRadius: 10,
-      borderBottomLeftRadius: 10,
       width: '25%',
       justifyContent: 'space-between',
+      borderTopWidth: 2,
+      borderBottomWidth: 2,
     },
     cardRight: {
       alignItems: 'stretch',
       flex: 1,
-      borderWidth: 1,
-      borderTopRightRadius: 10,
-      borderBottomRightRadius: 10,
+      borderTopWidth: 2,
+      borderBottomWidth: 2,
     },
     verticalDivider: {
       width: 1,
@@ -66,7 +67,6 @@ export class MatchPreview extends React.PureComponent {
       textAlign: 'center',
     },
     relativeTime: {
-      // fontStyle: 'italic',
       textAlign: 'center',
     },
     titleWrapper: {
@@ -101,9 +101,7 @@ export class MatchPreview extends React.PureComponent {
       paddingTop: 3,
       paddingLeft: 5,
     },
-    leftText: {
-      color: 'white',
-    },
+    leftText: {},
     expander: {
       flexDirection: 'row',
       justifyContent: 'center',
@@ -111,9 +109,7 @@ export class MatchPreview extends React.PureComponent {
       borderTopWidth: 1,
       borderWidth: 0,
     },
-    expanderButton: {
-      borderBottomRightRadius: 10,
-    },
+    expanderButton: {},
   });
 
   state = {
@@ -150,7 +146,7 @@ export class MatchPreview extends React.PureComponent {
 
     return (
       <View style={MatchPreview.styles.card}>
-        <View style={[MatchPreview.styles.cardLeft, background]}>
+        <View style={[MatchPreview.styles.cardLeft, background, border]}>
           <AppText
             bold
             style={[MatchPreview.styles.region, MatchPreview.styles.leftText]}
@@ -196,7 +192,7 @@ export class MatchPreview extends React.PureComponent {
           <View style={MatchPreview.styles.scenariosWrapper}>
             {scenarios.map(scenario => (
               <View key={scenario} style={MatchPreview.styles.scenarioWrapper}>
-                <Icon name="layers" />
+                <Icon name="layers" color="#ECEFF1" />
                 <AppText style={MatchPreview.styles.scenario}>
                   {scenario}
                 </AppText>
@@ -212,6 +208,7 @@ export class MatchPreview extends React.PureComponent {
               <View style={[MatchPreview.styles.expander, border]}>
                 <Icon
                   name={this.state.expanded ? 'expand-less' : 'expand-more'}
+                  color="#ECEFF1"
                 />
                 {this.state.expanded ? null : (
                   <AppText>

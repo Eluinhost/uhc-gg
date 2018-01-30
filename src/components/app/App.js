@@ -9,7 +9,7 @@ import font from '../../../assets/ShareTech-Regular.ttf';
 
 export class App extends React.Component {
   static styles = StyleSheet.create({
-    page: { flex: 1 },
+    page: { flex: 1, backgroundColor: '#263238' },
   });
 
   state = {

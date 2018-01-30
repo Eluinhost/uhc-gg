@@ -10,7 +10,6 @@ import { Link } from 'react-router-native';
 import logo from '../../../assets/logo.png';
 import { List, ListItem } from 'react-native-elements';
 import PropTypes from 'prop-types';
-import { LIGHT_BACKGROUND, LIGHT_HIGHLIGHT } from '../../Colours';
 import { AppText } from '../app-text';
 
 export class DrawerMenu extends React.PureComponent {
@@ -24,7 +23,7 @@ export class DrawerMenu extends React.PureComponent {
       shadowColor: '#000000',
       shadowOpacity: 0.8,
       shadowRadius: 3,
-      backgroundColor: LIGHT_BACKGROUND,
+      backgroundColor: '#263238',
     },
     logoWrapper: {
       flexDirection: 'row',
@@ -36,17 +35,16 @@ export class DrawerMenu extends React.PureComponent {
     },
     title: {
       fontSize: 40,
-      color: LIGHT_HIGHLIGHT,
     },
     linksList: {
       marginTop: 0,
     },
     linkTitleStyle: {
       fontFamily: 'ShareTech-Regular',
+      color: '#ECEFF1',
     },
     linkContainerStyle: {
-      borderTopColor: LIGHT_HIGHLIGHT,
-      borderTopWidth: 2,
+      backgroundColor: '#37474F',
     },
   });
 
@@ -71,7 +69,7 @@ export class DrawerMenu extends React.PureComponent {
             titleStyle={DrawerMenu.styles.linkTitleStyle}
             component={ListItem}
             containerStyle={DrawerMenu.styles.linkContainerStyle}
-            chevronColor={LIGHT_HIGHLIGHT}
+            chevronColor="white"
             onPress={this.props.closeMenu}
           />
         </List>
