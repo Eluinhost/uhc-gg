@@ -4,7 +4,7 @@ import {
   ScrollView,
   View,
   StyleSheet,
-  TouchableOpacity,
+  TouchableHighlight,
 } from 'react-native';
 import { Link } from 'react-router-native';
 import logo from '../../../assets/logo.png';
@@ -54,7 +54,8 @@ export class DrawerMenu extends React.PureComponent {
         <Link
           to="/"
           onPress={this.props.closeMenu}
-          component={TouchableOpacity}
+          component={TouchableHighlight}
+          underlayColor="#37474F33"
         >
           <View style={DrawerMenu.styles.logoWrapper}>
             <Image source={logo} style={DrawerMenu.styles.logo} />
@@ -65,13 +66,19 @@ export class DrawerMenu extends React.PureComponent {
         <List containerStyle={DrawerMenu.styles.linksList}>
           <Link
             to="/"
-            title="Upcoming Matches"
-            titleStyle={DrawerMenu.styles.linkTitleStyle}
-            component={ListItem}
-            containerStyle={DrawerMenu.styles.linkContainerStyle}
-            chevronColor="white"
+            component={TouchableHighlight}
             onPress={this.props.closeMenu}
-          />
+            underlayColor="#37474F33"
+          >
+            <View>
+              <ListItem
+                title="Upcoming Matches"
+                titleStyle={DrawerMenu.styles.linkTitleStyle}
+                containerStyle={DrawerMenu.styles.linkContainerStyle}
+                chevronColor="#ECEFF1"
+              />
+            </View>
+          </Link>
         </List>
       </ScrollView>
     );
