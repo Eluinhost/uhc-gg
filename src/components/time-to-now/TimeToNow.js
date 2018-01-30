@@ -26,6 +26,9 @@ export class TimeToNow extends React.PureComponent {
       width: '100%',
       justifyContent: 'space-around',
     },
+    past: {
+      justifyContent: 'center',
+    },
   });
 
   state = {
@@ -75,9 +78,11 @@ export class TimeToNow extends React.PureComponent {
   render() {
     return (
       <View style={TimeToNow.styles.container}>
-        <AppText style={this.props.style}>
-          {this.state.past ? '-' : null}
-        </AppText>
+        {this.state.past ? (
+          <View style={TimeToNow.styles.past}>
+            <AppText style={this.props.style}>-</AppText>
+          </View>
+        ) : null}
         {this.state.parts.map((part, index) => (
           <View key={index}>
             <AppText style={this.props.style}>{Math.abs(part.value)}</AppText>
