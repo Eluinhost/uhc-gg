@@ -1,4 +1,4 @@
-import { find, propEq, map } from 'ramda';
+import { find, propEq, map, compose, reject } from 'ramda';
 import { TeamStyles } from '../TeamStyle';
 import moment from 'moment-timezone';
 
@@ -19,7 +19,9 @@ export const getUpcomingMatches = async () => {
   const json = await response.json();
 
   // convert team styles
-  const matches = map(convertMatch, json);
+  const matches = compose(reject(propEq('removed', true)), map(convertMatch))(
+    json
+  );
 
   return matches;
 };
