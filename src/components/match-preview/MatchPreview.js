@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Icon } from 'react-native-elements';
 import { AppText } from '../app-text';
-import { View, StyleSheet, TouchableHighlight } from 'react-native';
+import { View, StyleSheet, TouchableHighlight, ScrollView } from 'react-native';
 import { renderTeamStyle } from '../../TeamStyle';
 import { FormattedTime } from '../formatted-time';
 import { TimeToNow } from '../time-to-now';
@@ -23,20 +23,19 @@ export class MatchPreview extends React.PureComponent {
       alignItems: 'stretch',
       elevation: 1,
       backgroundColor: '#37474F',
+      borderWidth: 2,
+      borderRightColor: '#37474F',
+      flex: 1,
     },
     cardLeft: {
       padding: 10,
       alignItems: 'center',
       width: '25%',
       justifyContent: 'space-between',
-      borderTopWidth: 2,
-      borderBottomWidth: 2,
     },
     cardRight: {
       alignItems: 'stretch',
       flex: 1,
-      borderTopWidth: 2,
-      borderBottomWidth: 2,
     },
     verticalDivider: {
       width: 1,
@@ -110,6 +109,13 @@ export class MatchPreview extends React.PureComponent {
       borderWidth: 0,
     },
     expanderButton: {},
+    scroller: {
+      width: '200%',
+    },
+    details: {
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
   });
 
   state = {
@@ -133,7 +139,10 @@ export class MatchPreview extends React.PureComponent {
     };
 
     const border = {
-      borderColor: colour,
+      borderTopColor: colour,
+      borderLeftColor: colour,
+      borderRightColor: colour,
+      borderBottomColor: colour,
     };
 
     let scenarios = this.props.match.scenarios;
@@ -145,81 +154,100 @@ export class MatchPreview extends React.PureComponent {
     }
 
     return (
-      <View style={MatchPreview.styles.card}>
-        <View style={[MatchPreview.styles.cardLeft, background, border]}>
-          <AppText
-            bold
-            style={[MatchPreview.styles.region, MatchPreview.styles.leftText]}
-          >
-            {this.props.match.region}
-          </AppText>
-          <View style={MatchPreview.styles.timing}>
+      <ScrollView
+        horizontal
+        pagingEnabled
+        contentContainerStyle={MatchPreview.styles.scroller}
+      >
+        <View style={[border, MatchPreview.styles.card]}>
+          <View style={[MatchPreview.styles.cardLeft, background]}>
             <AppText
-              style={[MatchPreview.styles.day, MatchPreview.styles.leftText]}
+              bold
+              style={[MatchPreview.styles.region, MatchPreview.styles.leftText]}
             >
-              TODAY
+              {this.props.match.region}
             </AppText>
-            <FormattedTime
-              style={[MatchPreview.styles.time, MatchPreview.styles.leftText]}
-              time={this.props.match.opens}
-              format="HH:mm z"
-            />
+            <View style={MatchPreview.styles.timing}>
+              <AppText
+                style={[MatchPreview.styles.day, MatchPreview.styles.leftText]}
+              >
+                TODAY
+              </AppText>
+              <FormattedTime
+                style={[MatchPreview.styles.time, MatchPreview.styles.leftText]}
+                time={this.props.match.opens}
+                format="HH:mm z"
+              />
+            </View>
+            <View>
+              <TimeToNow
+                time={this.props.match.opens}
+                style={[
+                  MatchPreview.styles.relativeTime,
+                  MatchPreview.styles.leftText,
+                ]}
+              />
+            </View>
           </View>
-          <View>
-            <TimeToNow
-              time={this.props.match.opens}
-              style={[
-                MatchPreview.styles.relativeTime,
-                MatchPreview.styles.leftText,
-              ]}
-            />
-          </View>
-        </View>
-        <View style={[MatchPreview.styles.cardRight, border]}>
-          <View style={MatchPreview.styles.titleWrapper}>
-            <AppText style={MatchPreview.styles.title} bold>
-              {this.props.match.hostingName || this.props.match.author}'s #{
-                this.props.match.count
-              }
+          <View style={MatchPreview.styles.cardRight}>
+            <View style={MatchPreview.styles.titleWrapper}>
+              <AppText style={MatchPreview.styles.title} bold>
+                {this.props.match.hostingName || this.props.match.author}'s #{
+                  this.props.match.count
+                }
+              </AppText>
+              <AppText>/r/{this.props.match.author}</AppText>
+            </View>
+            <View style={[MatchPreview.styles.horizontalDivider, background]} />
+            <AppText style={MatchPreview.styles.teamStyle} bold>
+              {teamStyle}
             </AppText>
-            <AppText>/r/{this.props.match.author}</AppText>
-          </View>
-          <View style={[MatchPreview.styles.horizontalDivider, background]} />
-          <AppText style={MatchPreview.styles.teamStyle} bold>
-            {teamStyle}
-          </AppText>
-          <View style={[MatchPreview.styles.horizontalDivider, background]} />
-          <View style={MatchPreview.styles.scenariosWrapper}>
-            {scenarios.map(scenario => (
-              <View key={scenario} style={MatchPreview.styles.scenarioWrapper}>
-                <Icon name="layers" color="#ECEFF1" />
-                <AppText style={MatchPreview.styles.scenario}>
-                  {scenario}
-                </AppText>
-              </View>
-            ))}
-          </View>
-          {expandable ? (
-            <TouchableHighlight
-              onPress={this._toggleExpand}
-              underlayColor={underlay}
-              style={MatchPreview.styles.expanderButton}
-            >
-              <View style={[MatchPreview.styles.expander, border]}>
-                <Icon
-                  name={this.state.expanded ? 'expand-less' : 'expand-more'}
-                  color="#ECEFF1"
-                />
-                {this.state.expanded ? null : (
-                  <AppText>
-                    +{this.props.match.scenarios.length - scenarios.length} more
+            <View style={[MatchPreview.styles.horizontalDivider, background]} />
+            <View style={MatchPreview.styles.scenariosWrapper}>
+              {scenarios.map(scenario => (
+                <View
+                  key={scenario}
+                  style={MatchPreview.styles.scenarioWrapper}
+                >
+                  <Icon name="layers" color="#ECEFF1" />
+                  <AppText style={MatchPreview.styles.scenario}>
+                    {scenario}
                   </AppText>
-                )}
-              </View>
-            </TouchableHighlight>
-          ) : null}
+                </View>
+              ))}
+            </View>
+            {expandable ? (
+              <TouchableHighlight
+                onPress={this._toggleExpand}
+                underlayColor={underlay}
+                style={MatchPreview.styles.expanderButton}
+              >
+                <View style={[MatchPreview.styles.expander, border]}>
+                  <Icon
+                    name={this.state.expanded ? 'expand-less' : 'expand-more'}
+                    color="#ECEFF1"
+                  />
+                  {this.state.expanded ? null : (
+                    <AppText>
+                      +{this.props.match.scenarios.length - scenarios.length}{' '}
+                      more
+                    </AppText>
+                  )}
+                </View>
+              </TouchableHighlight>
+            ) : null}
+          </View>
         </View>
-      </View>
+        <View
+          style={[
+            MatchPreview.styles.card,
+            border,
+            MatchPreview.styles.details,
+          ]}
+        >
+          <AppText>DETAILS</AppText>
+        </View>
+      </ScrollView>
     );
   }
 }
