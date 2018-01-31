@@ -118,10 +118,10 @@ export class MatchPreview extends React.PureComponent {
       alignItems: 'center',
     },
     leftCard: {
-      flex: 1,
+      width: '50%',
     },
     rightCard: {
-      flex: 1,
+      width: '50%',
     },
   });
 
