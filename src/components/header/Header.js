@@ -28,6 +28,7 @@ export class Header extends React.PureComponent {
   render() {
     return (
       <HeaderLib
+        statusBarProps={{ barStyle: 'light-content' }}
         backgroundColor="#263238"
         outerContainerStyles={Header.styles.container}
       >
